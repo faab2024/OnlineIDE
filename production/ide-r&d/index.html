@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>RunMyCode Online</title>
+    <meta name="description" content="RunMyCode Online is a free and open-source tool to compile and run code online, directly from GitHub, GitLab, BitBucket, and more.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date
+      ga('create', 'UA-100606537-1', 'auto')
+      ga('send', 'pageview')
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="grid grid--center">
+        <div class="grid-cell u-1of4">
+          <h2><a href="/">RunMyCode</a></h2>
+        </div>
+        <div class="grid-cell">
+          <div class="menu">
+            <ul id="top-menu" class="right">
+              <li><a href="dashboard.html" class="hide-if-no-user" id="user-name">Dashboard</a></li>
+              <li><a href="codesheet.html" class="hide-if-no-user">CodeSheet</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main class="text-center">
+        <p>RunMyCode Online is a free and open-source tool to compile and run code online, directly from GitHub, GitLab, BitBucket, and more.</p>
+
+        <iframe style="border: 1px solid; width: 99%;" height="445" src="https://www.youtube.com/embed/Q0m6diPI1Gs?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+
+        <p><a href="faq.html#supported-lang">Supported code</a> can be run in <a href="codesheet.html">CodeSheet</a> or directly from <a href="faq.html#supported-sites">supported sites</a> using browser extensions:<br><a href="https://chrome.google.com/webstore/detail/runmycode-online/iidcnkpdmnopbbkdmneglbelcefgfohf">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/runmycode-online">Firefox</a></p>
+
+        <h4 id="action-msg">Get started by authenticating below. <a href="faq.html#auth">Why?</a></h4>
+        <div class="menu" id="auth-buttons">
+          <ul>
+            <li><input class="btn auth" type="button" value="Google"></li>
+            <li><input class="btn auth" type="button" value="GitHub"></li>
+            <li><input class="btn auth" type="button" value="GitLab"></li>
+          </ul>
+        </div>
+        <a href="dashboard.html" class="btn btn-dashboard hide-if-no-user">Go to Dashboard</a>
+
+        <h3 class="text-center"><a href="screenshots.html" title="More Screenshots">Screenshots</a></h3>
+        <div class="screens">
+          <a href="screenshots/github.png"><img src="screenshots/github.png" title="Github"></a>
+          <a href="screenshots/github-gist.png"><img src="screenshots/github-gist.png" title="Github Gist"></a>
+          <a href="screenshots/gobyexample.png"><img src="screenshots/gobyexample.png" title="GoByExample"></a>
+        </div>
+      </main>
+
+      <footer>
+        <p>&copy; <a target="_blank" href="https://github.com/shatgupt">Shatrughn Gupta</a></p>
+      </footer>
+    </div>
+
+    <script>
+      const $ = s => document.querySelector(s)
+      const $$ = s => document.querySelectorAll(s)
+      let user = localStorage.getItem('runmycode')
+      const actionMsg = $('#action-msg')
+      if (user) {
+        user = JSON.parse(user)
+        $('#user-name').textContent = user.name || 'Dashboard'
+        Array.from($$('.hide-if-no-user')).forEach(el => el.classList.remove('hide-if-no-user'))
+
+        actionMsg.textContent = `You are signed in as ${user.name || user.email}`
+        $('#auth-buttons').classList.add('hide')
+      } else if (location.search.indexOf('ext-install=1') !== -1) {
+        actionMsg.innerHTML = 'Great! Now that you have installed the RunMyCode Online extension, authenticate below to start running code directly from <a href="faq.html#supported-sites">supported sites</a>. <a href="faq.html#auth">Why authenticate?</a>'
+      }
+    </script>
+    <script src="js/authenticator.js"></script>
+  </body>
+</html>

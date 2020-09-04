@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CodeSheet</title>
+    <meta name="description" content="Code, compile and run online C, C++, Java, Nodejs, Python, Ruby, Go, PHP, Scala and Kotlin.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/runmycode-panel.css">
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date
+      ga('create', 'UA-100606537-1', 'auto')
+      ga('send', 'pageview')
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="grid grid--center">
+        <div class="grid-cell u-1of4">
+          <h2><a href="/">RunMyCode</a></h2>
+        </div>
+        <div class="grid-cell">
+          <div class="menu">
+            <ul id="top-menu" class="right">
+              <li><a href="dashboard.html" class="hide-if-no-user" id="user-name">Dashboard</a></li>
+              <li><a href="codesheet.html" class="hide-if-no-user">CodeSheet</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+  
+      <main class="text-center">
+        <div class="grid grid--center">
+          <div class="grid-cell" style="text-align: left;">
+            <select id="language" title="Language">
+              <option value="nodejs">Nodejs</option>
+              <option value="c">C</option>
+              <option value="cpp">C++</option>
+              <option value="java">Java</option>
+              <option value="python">Python</option>
+              <option value="python3">Python3</option>
+              <option value="ruby">Ruby</option>
+              <option value="go">Go</option>
+              <option value="php">PHP</option>
+              <option value="kotlin">Kotlin</option>
+              <option value="scala">Scala</option>
+            </select>
+          </div>
+          <div class="grid-cell">
+            <h3>CodeSheet</h3>
+          </div>
+          <div class="grid-cell" style="text-align: right;">
+            <input id="popup-runner" class="btn" type="button" value="Run" title="Run Code">
+          </div>
+        </div>
+
+        <div id="code-wrapper"><h4>Loading...</h4></div>
+
+        <h4 class="hide-if-no-user">Install the browser extensions [<a target="_blank" href="https://chrome.google.com/webstore/detail/runmycode-online/iidcnkpdmnopbbkdmneglbelcefgfohf">Chrome</a>, <a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/runmycode-online">Firefox</a>] to run code directly from <a href="https://github.com/shatgupt/runmycode-test/blob/master/ruby.rb">Github</a> or <a href="https://gitlab.com/shatgupt/runmycode-test/blob/master/ruby.rb">Gitlab</a></h4>
+      </main>
+
+      <footer>
+        <p>&copy; <a target="_blank" href="https://github.com/shatgupt">Shatrughn Gupta</a></p>
+      </footer>
+    </div>
+
+    <script>
+      const $ = s => document.querySelector(s)
+      const $$ = s => document.querySelectorAll(s)
+      let user = localStorage.getItem('runmycode')
+      if (user) {
+        user = JSON.parse(user)
+        $('#user-name').textContent = user.name || 'Dashboard'
+        Array.from($$('.hide-if-no-user')).forEach(el => el.classList.remove('hide-if-no-user'))
+      } else {
+        $('#code-wrapper>h4').innerHTML = 'Please get a key by authenticating at <a href="/">homepage</a>'
+      }
+    </script>
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/mode/javascript/javascript.js"></script>
+    <script src="js/codesheet.js"></script>
+  </body>
+</html>

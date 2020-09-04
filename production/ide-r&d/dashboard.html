@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <meta name="description" content="RunMyCode Online Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date
+      ga('create', 'UA-100606537-1', 'auto')
+      ga('send', 'pageview')
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <script>
+      let user = localStorage.getItem('runmycode')
+      if(!user) location.assign('/' + location.search) // nothing for you here
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="grid grid--center">
+        <div class="grid-cell u-1of4">
+          <h2><a href="/">RunMyCode</a></h2>
+        </div>
+        <div class="grid-cell">
+          <div class="menu">
+            <ul id="top-menu" class="right">
+              <li><a href="dashboard.html" class="hide-if-no-user" id="user-name">Dashboard</a></li>
+              <li><a href="codesheet.html" class="hide-if-no-user">CodeSheet</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main class="text-center">
+        <h3>Dashboard</h3>
+
+        <h4 id="after-key-gen" class="hide">Nice! Now that you have the key, you can start running code either through <a href="codesheet.html">CodeSheet</a> or directly from <a href="faq.html#supported-sites">supported sites</a> using one of the <a href="faq.html#browser-ext">browser extensions</a>:<br><a href="https://chrome.google.com/webstore/detail/runmycode-online/iidcnkpdmnopbbkdmneglbelcefgfohf">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/runmycode-online">Firefox</a></h4>
+
+        <h4 id="after-ext-install" class="hide">Great! Now that you have installed the extension and have the key, you can start running code directly from <a href="faq.html#supported-sites">supported sites</a>. For example, you can now run <a href="https://github.com/shatgupt/runmycode-test/blob/master/ruby.rb">this Ruby code</a> directly from Github. Look for the Run button.</h4>
+
+        <p id="user-email"></p>
+        <p>Your API Key</p>
+        <p id="key"><input id="show-key" class="btn" type="button" value="Show Key"></p>
+
+        <div class="menu">
+          <ul>
+            <li><input id="logout" class="btn btn-warn" type="button" value="Logout" title="Clears data stored in browser. You won't be able to use CodeSheet. Browser extensions can still be used."></li>
+          </ul>
+        </div>
+      </main>
+
+      <footer>
+        <p>&copy; <a target="_blank" href="https://github.com/shatgupt">Shatrughn Gupta</a></p>
+      </footer>
+    </div>
+
+    <script>
+      const $ = s => document.querySelector(s)
+      const $$ = s => document.querySelectorAll(s)
+      // if user was not there, it would have been already redirected from head
+      user = JSON.parse(user)
+      // User name instead of simple Dashboard
+      $('#user-name').textContent = user.name || 'Dashboard'
+      $('#user-email').textContent = user.email
+      Array.from($$('.hide-if-no-user')).forEach(el => el.classList.remove('hide-if-no-user'))
+
+      $('#show-key').addEventListener('click', e => $('#key').textContent = user.key)
+      $('#logout').addEventListener('click', (e) => {
+        localStorage.removeItem('runmycode')
+        location.assign('/' + location.search)
+      })
+
+      if (location.search.indexOf('ext-install=1') !== -1) {
+        $('#after-ext-install').classList.remove('hide')
+      } else if (location.search.indexOf('key-gen=1') !== -1) {
+        // disable usage on first time till 30s to avoid getting 403 from APIG
+        $('#after-key-gen').classList.remove('hide')
+      }
+    </script>
+  </body>
+</html>

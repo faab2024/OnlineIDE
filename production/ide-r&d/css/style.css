@@ -1,0 +1,233 @@
+html, body {
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #37474f;
+  line-height: 1.5;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #263238;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: grey;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
+
+.container {
+  min-height: 100%;
+  position: relative;
+}
+
+header h2 {
+  margin: 15px 0;
+}
+
+header a, footer a {
+  text-decoration: none;
+}
+
+header a:hover, footer a:hover {
+  text-decoration: overline;
+  text-decoration-color: grey;
+}
+
+main {
+  padding-bottom: 70px;   /* Height of the footer element + 10px padding */
+}
+
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  text-align: center;
+  border-top: 1px solid black;
+}
+
+/* flexbox grid for vertical alignment */
+.grid {
+  display: flex;
+}
+
+.grid-cell {
+  flex: 1;
+}
+
+/* Alignment per row */
+.grid--top {
+  align-items: flex-start;
+}
+.grid--center {
+  align-items: center;
+}
+.grid--bottom {
+  align-items: flex-end;
+}
+
+/* Alignment per cell */
+.grid-cell--top {
+  align-self: flex-start;
+}
+.grid-cell--center {
+  align-self: center;
+}
+.grid-cell--bottom {
+  align-self: flex-end;
+}
+
+.u-1of4 {
+  width: 25%!important;
+  -webkit-box-flex: 0!important;
+  -webkit-flex: none!important;
+  -ms-flex: none!important;
+  flex: none!important;
+}
+
+.screens {
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  padding: 0;
+}
+
+.screens a {
+  display: block;
+  float: left;
+  flex: 0 0 auto;
+  margin-bottom: 15px;
+}
+
+.screens img {
+  max-width: 98%;
+  height: auto;
+  width: auto;
+}
+
+@media screen and (min-width: 800px) {
+  .screens a {
+    width: calc(100%/3);
+    height: calc(100%/3);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .screens a {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.menu {
+  width: 100%;
+}
+
+.right {
+  float: right;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  display: inline-block;
+}
+
+.menu ul li a {
+  padding: 2px 10px;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 8px 20px 10px 20px;
+  background: #00ffff;
+}
+
+.btn-dashboard {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-warn {
+  background: #ff8300;
+}
+
+.btn-danger {
+  background: #ff593d;
+}
+
+.btn:disabled {
+  background: #ddd;
+  cursor: default;
+}
+
+#extension-list {
+  list-style: none;
+  padding: 0;
+}
+
+#key {
+  padding: 15px 0;
+  font-size: large;
+  background: #e3e3e3;
+}
+
+#show-key {
+  width: 100%;
+  outline: none;
+  padding: 15px 0; /* #key padding */
+  margin: -15px 0; /* #key padding */
+  background: transparent;
+}
+
+#usage {
+  height: 41.6px;
+  line-height: 41.6px;
+}
+
+/* To auto grow code editor */
+.CodeMirror {
+  height: auto;
+  font-size: 14px;
+  text-align: initial;
+}
+
+#language {
+  display: none;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 3.6px 3px 3.6px 10px;
+}
+
+#popup-runner {
+  display: none;
+  padding: 7px 14px;
+}
+
+.hide, .hide-if-no-user {
+  display: none !important;
+}
